@@ -48,3 +48,61 @@ public static void registrarModificacionPrecio(Scanner scanner) {
         System.out.println("[ERROR] Datos numéricos inválidos.");
     }
 }
+
+
+public Factura buscarFacturaPorId(Long id) {
+    EntityManager em = getEntityManager();
+    Factura factura = null;
+    try {
+        factura = em.find(Factura.class, id);
+    } finally {
+        em.close();
+    }
+    return factura;
+}
+
+public void eliminarFacturaLogica(Long id) {
+    EntityManager em = getEntityManager();
+    try {
+        em.getTransaction().begin();
+        Factura factura = em.find(Factura.class, id);
+        if (factura != null) {
+            factura.setEstado(false);
+            em.merge(factura);
+        }
+        em.getTransaction().commit();
+    } catch (Exception e) {
+        if (em.getTransaction().isActive()) {
+            em.getTransaction().rollback();
+        }
+        throw e;
+    } finally {
+        em.close();
+    }
+}
+
+public List<Factura> obtenerTodasLasFacturas() {
+    EntityManager em = getEntityManager();
+    List<Factura> facturas = null;
+    try {
+        TypedQuery<Factura> query = em.createQuery("SELECT f FROM Factura f", Factura.class);
+        facturas = query.getResultList();
+    } finally {
+        em.close();
+    }
+    return facturas;
+}
+
+public List<Factura> obtenerFacturasMayoresA900k() {
+    EntityManager em = getEntityManager();
+    List<Factura> facturas = null;
+    try {
+        TypedQuery<Factura> query = em.createQuery(
+            "SELECT f FROM Factura f WHERE f.total > 900000", Factura.class
+        );
+        facturas = query.getResultList();
+    } finally {
+        em.close();
+    }
+    return facturas;
+}
