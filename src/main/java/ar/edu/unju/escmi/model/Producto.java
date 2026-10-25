@@ -1,4 +1,4 @@
-package main.java.ar.edu.unju.escmi.modelo;
+package ar.edu.unju.escmi.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
