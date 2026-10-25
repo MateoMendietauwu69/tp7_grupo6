@@ -1,4 +1,4 @@
-package main.java.ar.edu.unju.escmi.dao;
+package ar.edu.unju.escmi.dao;
 
 import main.java.ar.edu.unju.escmi.config.EmfSingleton;
 import main.java.ar.edu.unju.escmi.modelo.Producto;
