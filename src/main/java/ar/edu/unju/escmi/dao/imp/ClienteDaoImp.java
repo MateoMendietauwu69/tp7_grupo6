@@ -9,19 +9,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-/**
- * Implementación DAO para la entidad Cliente.
- * Usa JPA (EntityManager) para acceder a la base de datos.
- *
- * Patrones: DAO + Singleton (EmfSingleton)
- * Integrante responsable: Integrante 1
- */
+
 public class ClienteDaoImp implements IClienteDao {
 
-    /** Fábrica de EntityManagers (Singleton) */
     private EntityManagerFactory emf = EmfSingleton.getEntityManagerFactory();
+    private static ClienteDaoImp instance;
 
-    // ─── Alta ───────────────────────────────────────────────────────────────
+    private ClienteDaoImp() {
+    }
+
+    public static ClienteDaoImp getInstance() {
+        if (instance == null) {
+            instance = new ClienteDaoImp();
+        }
+        return instance;
+    }
 
     @Override
     public void guardarCliente(Cliente cliente) {
@@ -42,8 +44,6 @@ public class ClienteDaoImp implements IClienteDao {
         }
     }
 
-    // ─── Consulta por ID ────────────────────────────────────────────────────
-
     @Override
     public Cliente buscarClientePorId(Long id) {
         EntityManager em = emf.createEntityManager();
@@ -57,8 +57,6 @@ public class ClienteDaoImp implements IClienteDao {
             em.close();
         }
     }
-
-    // ─── Modificar ──────────────────────────────────────────────────────────
 
     @Override
     public void modificarCliente(Cliente cliente) {
@@ -77,9 +75,6 @@ public class ClienteDaoImp implements IClienteDao {
             em.close();
         }
     }
-
-    // ─── Eliminación lógica ─────────────────────────────────────────────────
-
     @Override
     public void eliminarCliente(Long id) {
         EntityManager em = emf.createEntityManager();
@@ -87,7 +82,7 @@ public class ClienteDaoImp implements IClienteDao {
             em.getTransaction().begin();
             Cliente c = em.find(Cliente.class, id);
             if (c != null) {
-                c.setEstado(false); // eliminación lógica
+                c.setEstado(false);
                 em.merge(c);
                 System.out.println("✔ Cliente desactivado (eliminación lógica).");
             } else {
@@ -103,8 +98,6 @@ public class ClienteDaoImp implements IClienteDao {
             em.close();
         }
     }
-
-    // ─── Listar activos ────────────────────────────────────────────────────
 
     @Override
     public List<Cliente> listarClientes() {
