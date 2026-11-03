@@ -4,9 +4,9 @@ import ar.edu.unju.escmi.dao.IDetalleFacturaDao;
 import ar.edu.unju.escmi.config.EmfSingleton;
 import ar.edu.unju.escmi.model.DetalleFactura;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
 import java.util.List;
 
 public class DetalleFacturaDaoImp implements IDetalleFacturaDao {

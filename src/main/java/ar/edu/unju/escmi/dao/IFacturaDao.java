@@ -11,5 +11,7 @@ public interface IFacturaDao {
 
     List<Factura> listarTodas();
 
+    List<Factura> listarFacturasMayoresA(double monto);
+
     void eliminarLogicamente(long id);
 }

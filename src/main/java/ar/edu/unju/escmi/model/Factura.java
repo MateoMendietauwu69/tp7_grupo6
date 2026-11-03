@@ -3,7 +3,7 @@ package ar.edu.unju.escmi.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Factura")
@@ -12,7 +12,7 @@ public class Factura {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
@@ -56,11 +56,11 @@ public class Factura {
         this.domicilio = cliente.getDomicilio();
     }
 
-    public long getid() {
+    public Long getid() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setid(Long id) {
         this.id = id;
     }
 

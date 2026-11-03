@@ -1,6 +1,6 @@
 package ar.edu.unju.escmi.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Entidad JPA que representa un Cliente.
