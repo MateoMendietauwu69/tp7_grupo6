@@ -105,7 +105,6 @@ public class Main {
         System.out.println("=======================================================");
     }
 
-    // ─── Opción 1 ──────────────────────────────────────────────────────────
     private static void registrarAltaCliente() {
         System.out.println("\n--- Alta de Cliente ---");
         String nombre = pedirString("Ingrese el nombre del cliente: ");
@@ -117,7 +116,6 @@ public class Main {
         clienteDao.guardarCliente(cliente);
     }
 
-    // ─── Opción 2 ──────────────────────────────────────────────────────────
     private static void registrarAltaProducto() {
         System.out.println("\n--- Alta de Producto ---");
         String descripcion = pedirString("Ingrese la descripción del producto: ");
@@ -127,7 +125,6 @@ public class Main {
         productoDao.guardarProducto(producto);
     }
 
-    // ─── Opción 3 ──────────────────────────────────────────────────────────
     private static void ventaDeProducto() {
         System.out.println("\n--- Nueva Venta (Factura) ---");
         long id = pedirLong("Ingrese ID del cliente: ");
@@ -178,7 +175,6 @@ public class Main {
         System.out.println(factura);
     }
 
-    // ─── Opción 4 ──────────────────────────────────────────────────────────
     private static void buscarYMostrarFactura() {
         long id = pedirLong("Ingrese el ID de la factura a buscar: ");
         Factura factura = facturaDao.buscarporid(id);
@@ -189,14 +185,12 @@ public class Main {
         }
     }
 
-    // ─── Opción 5 ──────────────────────────────────────────────────────────
     private static void eliminarFacturaLogica() {
         long id = pedirLong("Ingrese el ID de la factura a eliminar: ");
         facturaDao.eliminarLogicamente(id);
         System.out.println("Operación de eliminación lógica finalizada para la factura ID " + id + ".");
     }
 
-    // ─── Opción 6 ──────────────────────────────────────────────────────────
     private static void registrarBajaProducto() {
         long id = pedirLong("Ingrese el ID del producto a eliminar: ");
         if (productoDao.eliminarProductoLogico(id)) {
@@ -206,7 +200,6 @@ public class Main {
         }
     }
 
-    // ─── Opción 7 ──────────────────────────────────────────────────────────
     private static void modificarCliente() {
         long id = pedirLong("Ingrese el ID del cliente a modificar: ");
         Cliente cliente = clienteDao.buscarClientePorId(id);
@@ -224,7 +217,6 @@ public class Main {
         clienteDao.modificarCliente(cliente);
     }
 
-    // ─── Opción 8 ──────────────────────────────────────────────────────────
     private static void registrarModificacionPrecio() {
         long id = pedirLong("Ingrese el ID del producto a modificar: ");
         double nuevoPrecio = pedirDouble("Ingrese el nuevo precio unitario: ");
@@ -236,13 +228,11 @@ public class Main {
         }
     }
 
-    // ─── Opción 9 ──────────────────────────────────────────────────────────
     private static void eliminarClienteLogico() {
         long id = pedirLong("Ingrese el ID del cliente a eliminar: ");
         clienteDao.eliminarCliente(id);
     }
 
-    // ─── Opción 10 ─────────────────────────────────────────────────────────
     private static void mostrarTodasLasFacturas() {
         List<Factura> facturas = facturaDao.listarTodas();
         if (facturas.isEmpty()) {
@@ -253,7 +243,6 @@ public class Main {
         }
     }
 
-    // ─── Opción 11 ─────────────────────────────────────────────────────────
     private static void mostrarTodosLosClientes() {
         List<Cliente> clientes = clienteDao.listarClientes();
         if (clientes.isEmpty()) {
@@ -264,7 +253,6 @@ public class Main {
         }
     }
 
-    // ─── Opción 12 ─────────────────────────────────────────────────────────
     private static void mostrarFacturasMayoresA900k() {
         List<Factura> facturas = facturaDao.listarFacturasMayoresA(900000);
         if (facturas.isEmpty()) {
@@ -275,7 +263,6 @@ public class Main {
         }
     }
 
-    // ─── Utilidades de lectura con validación ──────────────────────────────
     private static long pedirLong(String mensaje) {
         while (true) {
             try {

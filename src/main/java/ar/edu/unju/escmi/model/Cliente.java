@@ -2,18 +2,9 @@ package ar.edu.unju.escmi.model;
 
 import jakarta.persistence.*;
 
-/**
- * Entidad JPA que representa un Cliente.
- * Mapea la tabla "clientes" en la base de datos MySQL.
- *
- * Patrón: Entity (JPA)
- * Integrante responsable: Integrante 1
- */
 @Entity
 @Table(name = "clientes")
 public class Cliente {
-
-    // ─── Atributos / Mapeo JPA ─────────────────────────────────────────────
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,21 +26,10 @@ public class Cliente {
     @Column(name = "estado")
     private boolean estado;
 
-    // ─── Constructores ─────────────────────────────────────────────────────
-
-    /** Constructor vacío requerido por JPA */
     public Cliente() {
-        this.estado = true; // activo por defecto
+        this.estado = true;
     }
 
-    /**
-     * Constructor con todos los atributos.
-     *
-     * @param nombre    nombre del cliente
-     * @param apellido  apellido del cliente
-     * @param domicilio domicilio del cliente
-     * @param dni       DNI del cliente
-     */
     public Cliente(String nombre, String apellido, String domicilio, int dni) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -57,8 +37,6 @@ public class Cliente {
         this.dni = dni;
         this.estado = true;
     }
-
-    // ─── Getters y Setters ─────────────────────────────────────────────────
 
     public Long getId() {
         return id;
@@ -107,8 +85,6 @@ public class Cliente {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
-    // ─── toString ──────────────────────────────────────────────────────────
 
     @Override
     public String toString() {

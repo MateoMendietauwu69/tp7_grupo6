@@ -62,7 +62,6 @@ public class ProductoDaoImp implements IProductoDao {
         }
     }
 
-    // Opción 6 del menú: Eliminación lógica (cambiar estado a false)
     @Override
     public boolean eliminarProductoLogico(Long id) {
         EntityManager em = emf.createEntityManager();
@@ -88,7 +87,6 @@ public class ProductoDaoImp implements IProductoDao {
         }
     }
 
-    // Opción 8 del menú: Modificar precio de producto
     @Override
     public boolean modificarPrecioProducto(Long id, double nuevoPrecio) {
         EntityManager em = emf.createEntityManager();
