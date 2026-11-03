@@ -1,6 +1,6 @@
 package ar.edu.unju.escmi.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity

@@ -1,6 +1,6 @@
 package ar.edu.unju.escmi.model;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "detalle_factura")
@@ -9,7 +9,7 @@ public class DetalleFactura {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "producto_id", nullable = false)
@@ -35,11 +35,11 @@ public class DetalleFactura {
         this.subtotal = cantidad * producto.getPrecioUnitario();
     }
 
-    public long getid() {
+    public Long getid() {
         return id;
     }
 
-    public void setid(long id) {
+    public void setid(Long id) {
         this.id = id;
     }
 

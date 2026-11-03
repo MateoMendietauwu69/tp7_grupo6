@@ -1,0 +1,29 @@
+# Compilados y build
+target/
+bin/
+*.class
+
+# Eclipse
+.classpath
+.project
+.settings/
+.apt_generated/
+.factorypath
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/
+build/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

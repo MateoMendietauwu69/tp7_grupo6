@@ -1,7 +1,7 @@
 package ar.edu.unju.escmi.config;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
 /**
  * Clase Singleton para gestionar el EntityManagerFactory.

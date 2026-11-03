@@ -1,26 +1,31 @@
-package ar.edu.unju.escmi.dao;
+package ar.edu.unju.escmi.dao.imp;
 
-import main.java.ar.edu.unju.escmi.config.EmfSingleton;
-import main.java.ar.edu.unju.escmi.modelo.Producto;
+import ar.edu.unju.escmi.config.EmfSingleton;
+import ar.edu.unju.escmi.dao.IProductoDao;
+import ar.edu.unju.escmi.model.Producto;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import java.util.List;
 
-public class ProductoDao {
+public class ProductoDaoImp implements IProductoDao {
 
-    private static ProductoDao instancia;
+    private final EntityManagerFactory emf = EmfSingleton.getEntityManagerFactory();
+    private static ProductoDaoImp instancia;
 
-    private ProductoDao() {}
+    private ProductoDaoImp() {
+    }
 
-    public static synchronized ProductoDao getInstance() {
+    public static synchronized ProductoDaoImp getInstance() {
         if (instancia == null) {
-            instancia = new ProductoDao();
+            instancia = new ProductoDaoImp();
         }
         return instancia;
     }
 
+    @Override
     public void guardarProducto(Producto producto) {
-        EntityManager em = EmfSingleton.getInstance().createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             em.persist(producto);
@@ -36,8 +41,9 @@ public class ProductoDao {
         }
     }
 
+    @Override
     public Producto buscarProductoPorId(Long id) {
-        EntityManager em = EmfSingleton.getInstance().createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             return em.find(Producto.class, id);
         } finally {
@@ -45,8 +51,9 @@ public class ProductoDao {
         }
     }
 
+    @Override
     public List<Producto> listarProductosActivos() {
-        EntityManager em = EmfSingleton.getInstance().createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             return em.createQuery("SELECT p FROM Producto p WHERE p.estado = true", Producto.class)
                      .getResultList();
@@ -56,8 +63,9 @@ public class ProductoDao {
     }
 
     // Opción 6 del menú: Eliminación lógica (cambiar estado a false)
+    @Override
     public boolean eliminarProductoLogico(Long id) {
-        EntityManager em = EmfSingleton.getInstance().createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Producto producto = em.find(Producto.class, id);
@@ -81,8 +89,9 @@ public class ProductoDao {
     }
 
     // Opción 8 del menú: Modificar precio de producto
+    @Override
     public boolean modificarPrecioProducto(Long id, double nuevoPrecio) {
-        EntityManager em = EmfSingleton.getInstance().createEntityManager();
+        EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
             Producto producto = em.find(Producto.class, id);
